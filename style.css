@@ -92,3 +92,8 @@ button:active {
         padding: 30px;
     }
 }
+
+#error{
+    color: red;
+    text-align: center;
+}
