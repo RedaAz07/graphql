@@ -132,6 +132,13 @@ async function Profile() {
 
         const data = await response.json();
         console.log(data);
+        
+        content.innerHTML =  `
+        <header id="header">
+        <div id="welcom"><h1> welcom  ${data.data.user[0].lastName}   ${data.data.user[0].firstName}</h1></div>
+        <div id="btn"><button id="logout">logOut</button></div>
+         </header>
+        `
 
     } catch (error) {
         console.log(error);
