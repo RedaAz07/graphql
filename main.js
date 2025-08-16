@@ -4,7 +4,7 @@ content.innerHTML = `
     <h1>Zone01</h1>
         <form  id="form">
             <input type="text"  placeholder="username/email" id="username">
-            <input type="text"  placeholder="password" id="password">
+            <input type="password"  placeholder="password" id="password">
             <span id="error"></span>
             <button type="submit">login</button>
         </form>
@@ -131,13 +131,17 @@ async function Profile() {
         }
 
         const data = await response.json();
-        console.log(data);
-        
-        content.innerHTML =  `
+       
+        document.body.innerHTML = `
         <header id="header">
         <div id="welcom"><h1> welcom  ${data.data.user[0].lastName}   ${data.data.user[0].firstName}</h1></div>
         <div id="btn"><button id="logout">logOut</button></div>
          </header>
+
+         <div class="container">
+         <div class="></div>
+         
+         </div>
         `
 
     } catch (error) {
