@@ -114,220 +114,210 @@ button:active {
   z-index: 999;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
- .container {
-            position: absolute;
-            top: 20%;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-            max-width: 1200px;
-            width: 100%;
-        }
+  .container {
+              position: absolute;
+              top: 20%;
+              left: 50%;
+              transform: translateX(-50%);
+              display: flex;
+              flex-direction: column;
+              gap: 30px;
+              max-width: 1200px;
+              width: 100%;
+          }
 
-        .info {
-            display: flex;
-            gap: 30px;
-            flex-wrap: wrap;
-            justify-content: center;
-            width: 100%;
-        }
+          .info {
+              display: flex;
+              gap: 30px;
+              flex-wrap: wrap;
+              justify-content: center;
+              width: 100%;
+          }
 
-        .svg {
-            display: flex;
-            gap: 30px;
-            flex-wrap: wrap;
-            justify-content: center;
-            width: 100%;
-        }
+          .svg {
+              display: flex;
+              gap: 30px;
+              flex-wrap: wrap;
+              justify-content: center;
+              width: 100%;
+          }
 
-        .xp, .level, .svg1, .svg2 {
-            background: rgba(15, 23, 42, 0.8);
-            border: 1px solid rgba(139, 92, 246, 0.3);
-            border-radius: 20px;
-            padding: 40px 30px;
-            text-align: center;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-            color: #e2e8f0;
-            font-size: 18px;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            position: relative;
-        }
+          .xp, .level, .svg1, .svg2 {
+              background: rgba(15, 23, 42, 0.8);
+              border: 1px solid rgba(139, 92, 246, 0.3);
+              border-radius: 20px;
+              padding: 40px 30px;
+              text-align: center;
+              backdrop-filter: blur(10px);
+              box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+              transition: all 0.3s ease;
+              color: #e2e8f0;
+              font-size: 18px;
+              font-weight: 500;
+              text-transform: uppercase;
+              letter-spacing: 1px;
+              position: relative;
+          }
 
-        .xp, .level {
-            min-width: 280px;
-        }
+          .xp, .level {
+              min-width: 280px;
+          }
 
-        .svg1 {
-            min-width: 320px;
-        }
+          .svg1 {
+              min-width: 320px;
+          }
 
-        .svg2 {
-            min-width: 380px;
-        }
+          .svg2 {
+              min-width: 380px;
+          }
 
-        .xp:hover, .level:hover, .svg1:hover, .svg2:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 40px rgba(139, 92, 246, 0.2);
-            border-color: rgba(139, 92, 246, 0.5);
-        }
+          .xp:hover, .level:hover, .svg1:hover, .svg2:hover {
+              transform: translateY(-5px);
+              box-shadow: 0 12px 40px rgba(139, 92, 246, 0.2);
+              border-color: rgba(139, 92, 246, 0.5);
+          }
 
-        .xp::after, .level::after, .svg1::after, .svg2::after {
-            content: '';
-            position: absolute;
-            bottom: 70px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(90deg, #8b5cf6, #a78bfa);
-            border-radius: 2px;
-        }
+        
 
-        .svg1::after {
-            bottom: 90px;
-        }
+          .svg1::after {
+              bottom: 90px;
+          }
 
-        .svg2::after {
-            bottom: 200px;
-        }
+          .svg2::after {
+              bottom: 200px;
+          }
 
-        .xp span {
-            display: block;
-            margin-top: 20px;
-            font-size: 42px;
-            font-weight: 700;
-            background: linear-gradient(135deg, #8b5cf6, #a78bfa, #c4b5fd);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
-        }
+          .xp span {
+              display: block;
+              margin-top: 20px;
+              font-size: 42px;
+              font-weight: 700;
+              background: linear-gradient(135deg, #8b5cf6, #a78bfa, #c4b5fd);
+              -webkit-background-clip: text;
+              background-clip: text;
+              -webkit-text-fill-color: transparent;
+              text-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
+          }
 
-        .level-cr {
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(135deg, #8b5cf6, #a78bfa);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 36px;
-            font-weight: 700;
-            color: white;
-            margin: 25px auto 0;
-            box-shadow: 0 0 30px rgba(139, 92, 246, 0.4);
-            position: relative;
-            animation: glow 3s ease-in-out infinite;
-        }
+          .level-cr {
+              width: 100px;
+              height: 100px;
+              background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+              border-radius: 50%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 36px;
+              font-weight: 700;
+              color: white;
+              margin: 25px auto 0;
+              box-shadow: 0 0 30px rgba(139, 92, 246, 0.4);
+              position: relative;
+              animation: glow 3s ease-in-out infinite;
+          }
 
-        .level-cr::before {
-            content: '';
-            position: absolute;
-            inset: -3px;
-            background: linear-gradient(135deg, #8b5cf6, #a78bfa, #c4b5fd);
-            border-radius: 50%;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
+          .level-cr::before {
+              content: '';
+              position: absolute;
+              inset: -3px;
+              background: linear-gradient(135deg, #8b5cf6, #a78bfa, #c4b5fd);
+              border-radius: 50%;
+              z-index: -1;
+              opacity: 0;
+              transition: opacity 0.3s ease;
+          }
 
-        .level:hover .level-cr::before {
-            opacity: 1;
-        }
+          .level:hover .level-cr::before {
+              opacity: 1;
+          }
 
-        .svg1 svg {
-            margin-top: 20px;
-            filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.3));
-        }
+          .svg1 svg {
+              margin-top: 20px;
+              filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.3));
+          }
 
-        .svg1 circle[stroke="#eee"] {
-            stroke: rgba(255, 255, 255, 0.1);
-        }
+          .svg1 circle[stroke="#eee"] {
+              stroke: rgba(255, 255, 255, 0.1);
+          }
 
-        .svg1 circle[stroke="red"] {
-            stroke: #ef4444;
-            filter: drop-shadow(0 0 8px rgba(239, 68, 68, 0.5));
-        }
+          .svg1 circle[stroke="red"] {
+              stroke: #ef4444;
+              filter: drop-shadow(0 0 8px rgba(239, 68, 68, 0.5));
+          }
 
-        .svg1 circle[stroke="blue"] {
-            stroke: #3b82f6;
-            filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.5));
-        }
+          .svg1 circle[stroke="blue"] {
+              stroke: #3b82f6;
+              filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.5));
+          }
 
-        .svg2 {
-            text-align: left;
-        }
+          .svg2 {
+              text-align: left;
+          }
 
-        .svg2 > div {
-            margin: 15px 0;
-            color: #e2e8f0;
-            font-size: 16px;
-            font-weight: 500;
-            text-transform: capitalize;
-        }
+          .svg2 > div {
+              margin: 15px 0;
+              color: #e2e8f0;
+              font-size: 16px;
+              font-weight: 500;
+              text-transform: capitalize;
+          }
 
-        .svg2 svg {
-            margin-top: 8px;
-            border: 1px solid rgba(139, 92, 246, 0.3) !important;
-            border-radius: 12px;
-            background: rgba(15, 23, 42, 0.5);
-        }
+          .svg2 svg {
+              margin-top: 8px;
+              border: 1px solid rgba(139, 92, 246, 0.3) !important;
+              border-radius: 12px;
+              background: rgba(15, 23, 42, 0.5);
+          }
 
-        .svg2 rect[fill="#eee"] {
-            fill: rgba(255, 255, 255, 0.1);
-        }
+          .svg2 rect[fill="#eee"] {
+              fill: rgba(255, 255, 255, 0.1);
+          }
 
-        .svg2 rect[fill="green"] {
-            fill: url(#skillGradient);
-        }
+        
 
-        /* Define gradient for skill bars */
-        .svg2 svg defs linearGradient {
-            --gradient: linear-gradient(90deg, #8b5cf6, #a78bfa);
-        }
+          /* Define gradient for skill bars */
+          .svg2 svg defs linearGradient {
+              --gradient: linear-gradient(90deg, #8b5cf6, #a78bfa);
+          }
 
-        @keyframes glow {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
-        }
+          @keyframes glow {
+              0%, 100% { opacity: 0.5; }
+              50% { opacity: 1; }
+          }
 
-        @media (max-width: 768px) {
-            .container {
-                top: 10%;
-                padding: 0 10px;
-            }
-            
-            .info, .svg {
-                gap: 20px;
-            }
+          @media (max-width: 768px) {
+              .container {
+                  top: 10%;
+                  padding: 0 10px;
+              }
+              
+              .info, .svg {
+                  gap: 20px;
+              }
 
-            .xp, .level, .svg1, .svg2 {
-                min-width: 250px;
-                padding: 30px 20px;
-            }
+              .xp, .level, .svg1, .svg2 {
+                  min-width: 250px;
+                  padding: 30px 20px;
+              }
 
-            .svg1 svg {
-                width: 200px;
-                height: 200px;
-            }
+              .svg1 svg {
+                  width: 200px;
+                  height: 200px;
+              }
 
-            .svg2 svg {
-                width: 250px;
-            }
+              .svg2 svg {
+                  width: 250px;
+              }
 
-            .xp span {
-                font-size: 36px;
-            }
+              .xp span {
+                  font-size: 36px;
+              }
 
-            .level-cr {
-                width: 80px;
-                height: 80px;
-                font-size: 28px;
-            }
-        }
+              .level-cr {
+                  width: 80px;
+                  height: 80px;
+                  font-size: 28px;
+              }
+          }
+
+
