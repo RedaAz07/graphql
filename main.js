@@ -59,26 +59,30 @@ async function login() {
 
 async function checker() {
   const jwt = localStorage.getItem("token")
-  console.log(jwt);
   
   if (jwt ===null) {
     return false
   }
   content.innerHTML = ""
   try {
-    const response = await fetch(dataApi, {
+    const response = await fetch(loginApi, {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${jwt}`,
+        'Authorization': `Basic ${jwt}`,
         'Content-Type': 'application/json'
       }
     })
+    console.log(response.ok);
+    
     if (response.ok) {
+      
       return true
     } else {
+
       return false
     }
   } catch (error) {
+
     return false
   }
 }
@@ -86,10 +90,7 @@ async function checker() {
 
 
 document.addEventListener('DOMContentLoaded', async () => {
-console.log(1);
-console.log(checker());
 let k =  await checker()
-console.log(k);
 
   if (k) {
     Profile()
@@ -163,7 +164,6 @@ async function Profile() {
       })
     });
     if (!response.ok) {
-      console.error("HTTP error:", response.status, await response.text());
       throw new Error('Unauthorized');
     }
     let data = await response.json();
@@ -177,6 +177,9 @@ async function Profile() {
   }
 }
 
+
+
+
 function svg(data) {
   const user = data.user[0];
   const totalXp = data.totalXp.aggregate.sum.amount;
@@ -184,12 +187,15 @@ function svg(data) {
   const success = data.audit[0].sucess.aggregate.count;
   const failed = data.audit[0].failed.aggregate.count;
   const totalAudits = success + failed;
-  const auditRatio = data.audit.auditRatio;
+  const auditRatio = data.audit[0].auditRatio;
   const skills = data.skills[0].transactions;
+  
+  // Calculate audit ratio for circle
   const radius = 80;
   const circumference = 2 * Math.PI * radius;
   const successLength = (success / totalAudits) * circumference;
   const failedLength = (failed / totalAudits) * circumference;
+  
   document.body.innerHTML = `
 <header id="header">
   <div id="welcom">
@@ -201,17 +207,18 @@ function svg(data) {
 <div class="container">
   <div class="info">
     <div class="xp">
-      Total xp
+      <h3>Total XP</h3>
       <span>${(totalXp / 1000).toFixed(1)}KB</span>
     </div>
     <div class="level">
-      current level
+      <h3>Current Level</h3>
       <div class="level-cr">${level}</div>
     </div>
   </div>
+  
   <div class="svg">
     <div class="svg1">
-Audit Ratio
+      <h3>Audit Ratio</h3>
       <svg width="250" height="250" viewBox="0 0 200 200">
         <defs>
           <linearGradient id="greenGradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -223,7 +230,7 @@ Audit Ratio
             <stop offset="100%" style="stop-color:#f87171; stop-opacity:1" />
           </linearGradient>
         </defs>
-        <circle r="80" cx="100" cy="100" fill="transparent" stroke="rgba(255,255,255,0.1)" stroke-width="15"/>
+        <circle r="80" cx="100" cy="100" fill="transparent" stroke="rgba(102, 126, 234, 0.1)" stroke-width="15"/>
         <circle
           r="80"
           cx="100"
@@ -246,47 +253,43 @@ Audit Ratio
           stroke-dashoffset="-${successLength}"
           transform="rotate(-90 100 100)"
         />
-        <text x="100" y="90" text-anchor="middle" font-size="10" fill="#22c55e" font-weight="bold">
-    ${success}
-  </text>
-  <text x="100" y="100" text-anchor="middle" font-size="10" fill="#22c55e">
-    Success
-  </text>
-
-  <text x="100" y="130" text-anchor="middle" font-size="10" fill="#ef4444" font-weight="bold">
-    ${failed}
-  </text>
-  <text x="100" y="140" text-anchor="middle" font-size="10" fill="#ef4444">
-    Failed
-  </text>
+        <text x="100" y="90" text-anchor="middle" font-size="12" fill="#22c55e" font-weight="bold">
+          ${success}
+        </text>
+        <text x="100" y="105" text-anchor="middle" font-size="10" fill="#22c55e">
+          Success
+        </text>
+        <text x="100" y="125" text-anchor="middle" font-size="12" fill="#ef4444" font-weight="bold">
+          ${failed}
+        </text>
+        <text x="100" y="140" text-anchor="middle" font-size="10" fill="#ef4444">
+          Failed
+        </text>
+        <text x="100" y="160" text-anchor="middle" font-size="10" fill="#667eea" font-weight="bold">
+          Ratio: ${auditRatio.toFixed(2)}
+        </text>
       </svg>
     </div>
 
     <div class="svg2">
-      Skills
+      <h3>Skills</h3>
+      <div class="skills-container">
         ${skills.map(skill => `
-          <div>
-            ${skill.skillType}
-            <svg width="300" height="40">
-              <rect x="0" y="0" width="300" height="40" fill="rgba(255, 255, 255, 0.1)" rx="10" ry="10"/>
-              <rect x="0" y="0" width="${skill.skillAmount * 3}" height="40" fill="green" rx="10" ry="10"/>
-                  <text
-    x="${skill.skillAmount * 3}" 
-    y="20"
-    text-anchor="end"
-    alignment-baseline="middle"
-    font-size="10"
-    fill="white">
-    ${skill.skillAmount}%
-  </text>
-            </svg>
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>${skill.skillType}</span>
+              <span class="skill-percentage">${skill.skillAmount}%</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: ${Math.min(skill.skillAmount, 100)}%"></div>
+            </div>
           </div>
         `).join('')}
+      </div>
     </div>
   </div>
 </div>
 `;
-
 }
 
 function logout() {
