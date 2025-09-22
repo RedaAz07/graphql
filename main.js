@@ -19,7 +19,6 @@ async function login() {
     </div>
     `
   const form = document.getElementById("form")
-
   const spanError = document.getElementById("error")
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -27,7 +26,8 @@ async function login() {
     const password = document.getElementById("password")
     error.innerHTML = ""
     if (username.vlaue === "" || password.value === "") {
-      error.innerHTML = "empty data"
+      spanError.style.display = "block"
+      spanError.innerHTML = "empty data"
       return
     }
     let credentials = btoa(`${username.value}:${password.value}`)
@@ -39,9 +39,7 @@ async function login() {
           'Content-Type': 'application/json'
 
         },
-        body: JSON.stringify({
-          query: `{ user { id } }`
-        })
+       
       })
       if (!respons.ok) {
         throw new Error("invalid credentials");
@@ -50,7 +48,11 @@ async function login() {
       localStorage.setItem("token", data);
       Profile()
     } catch (error) {
-      spanError.innerHTML = error
+      console.log(error);
+      
+      spanError.style.display = "block"
+
+      spanError.innerHTML = error.message
     }
   })
 }
@@ -58,8 +60,7 @@ async function login() {
 
 
  document.addEventListener('DOMContentLoaded', async () => {
-let k =  localStorage.getItem("token") !== null
-
+let k =  localStorage.getItem("token")
   if (k) {
     Profile()
   } else {
@@ -138,7 +139,6 @@ async function Profile() {
     data = data.data
     
     if (!data) {
-      console.log("no data");
       
       logout()
       return
@@ -165,7 +165,6 @@ function svg(data) {
   const auditRatio = data.audit[0].auditRatio;
   const skills = data.skills[0].transactions;
   
-  // Calculate audit ratio for circle
   const radius = 80;
   const circumference = 2 * Math.PI * radius;
   const successLength = (success / totalAudits) * circumference;
@@ -252,7 +251,7 @@ function svg(data) {
         ${skills.map(skill => `
           <div class="skill-item">
             <div class="skill-name">
-              <span>${skill.skillType}</span>
+              <span>${skill.skillType.split("_").slice(1).toString()}</span>
               <span class="skill-percentage">${skill.skillAmount}%</span>
             </div>
             <div class="skill-bar">
