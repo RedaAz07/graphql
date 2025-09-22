@@ -57,40 +57,8 @@ async function login() {
 
 
 
-async function checker() {
-  const jwt = localStorage.getItem("token")
-  
-  if (jwt ===null) {
-    return false
-  }
-  content.innerHTML = ""
-  try {
-    const response = await fetch(loginApi, {
-      method: 'POST',
-      headers: {
-        'Authorization': `Basic ${jwt}`,
-        'Content-Type': 'application/json'
-      }
-    })
-    console.log(response.ok);
-    
-    if (response.ok) {
-      
-      return true
-    } else {
-
-      return false
-    }
-  } catch (error) {
-
-    return false
-  }
-}
-
-
-
-document.addEventListener('DOMContentLoaded', async () => {
-let k =  await checker()
+ document.addEventListener('DOMContentLoaded', async () => {
+let k =  localStorage.getItem("token") !== null
 
   if (k) {
     Profile()
@@ -98,7 +66,7 @@ let k =  await checker()
     login()
   }
 });
-
+ 
 
 
 async function Profile() {
@@ -168,6 +136,13 @@ async function Profile() {
     }
     let data = await response.json();
     data = data.data
+    
+    if (!data) {
+      console.log("no data");
+      
+      logout()
+      return
+    }
     svg(data)
     document.getElementById("btn").addEventListener("click", () => {
       logout()
