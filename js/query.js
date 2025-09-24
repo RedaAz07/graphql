@@ -1,7 +1,7 @@
 
 
 
-export const   quer =  `
+export const quer = `
 {
   user {
     firstName
@@ -48,26 +48,15 @@ export const   quer =  `
       }
     }
   }
-    projects :  user {
-    transactions(
-      where: {
-        type: { _eq: "xp" }
-        event: { object: { name: { _eq: "Module" } } }
-      }
-      order_by: { createdAt: desc }
-    ) {
-      object {
-        name
-        progresses {
-          group {
-            members {
-              userLogin
+    projects : user {
+
+        finished_projects: groups(where: {
+            group: {status: {_eq: finished}, _and: 
+                {eventId: {_eq: 41}}
             }
-          }
+        } order_by: {  updatedAt: desc}) {
+            group { path members { userLogin }             updatedAt
+}
         }
-      }
-      amount
-      createdAt
     }
-  }
 }`

@@ -9,7 +9,7 @@ const dataApi = "https://learn.zone01oujda.ma/api/graphql-engine/v1/graphql"
 
 
 export async function login() {
- document.body.innerHTML=loginUI
+  document.body.innerHTML = loginUI
   const form = document.getElementById("form")
   const spanError = document.getElementById("error")
   form.addEventListener("submit", async (e) => {
@@ -86,8 +86,10 @@ export async function Profile() {
 
 
 function svg(data) {
-  const projects =  data.projects
+  const projects = data.projects[0].finished_projects
+
   console.log(projects);
+
 
   const user = data.user[0];
   const totalXp = data.totalXp.aggregate.sum.amount;
@@ -97,7 +99,6 @@ function svg(data) {
   const totalAudits = success + failed;
   const auditRatio = data.audit[0].auditRatio;
   const skills = data.skills[0].transactions;
-
   const radius = 80;
   const circumference = 2 * Math.PI * radius;
   const successLength = (success / totalAudits) * circumference;
@@ -120,13 +121,84 @@ ${header(user)}
   </div>
   
   <div class="svg">
+  <div class="projects-section">
+                    <h3>Recent Projects</h3>
+                    <div class="table-container">
+                        <div class="table-scroll">
+                            <table class="projects-table">
+                                <thead>
+                                    <tr>
+                                        <th>Project Name</th>
+                                        <th>Date</th>
+                                        <th>Team Members</th>
+                                    </tr>
+                                </thead>
+                                
+                                <tbody id="projects-tbody">
+                                
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
   ${svg2(skills)}
-  ${svg1(successLength, circumference,failedLength , success, failed , auditRatio)}
+  ${svg1(successLength, circumference, failedLength, success, failed, auditRatio)}
 
   </div>
 </div>
 `;
+  const tbody = document.getElementById('projects-tbody');
+  tbody.innerHTML = ''; // Clear existing rows
+
+  let rowIndex = 0;
+
+  projects.forEach(transaction => {
+    const row = document.createElement('tr');
+    row.style.setProperty('--row-index', rowIndex);
+
+    const group = transaction.group;
+    const projectName = transaction.group.path.replace("/oujda/module/", "")
+    const date = new Date(transaction.group.updatedAt);
+
+    // Format date
+    const formattedDate = date.toLocaleDateString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric'
+    });
+
+    // Format amount
+
+
+    // Render member tags
+    let memberTags = '<span class="no-group">Solo Project</span>';
+    if (group && group.members) {
+      memberTags = group.members.map(member =>
+        `<span class="member-tag">${member.userLogin}</span>`
+      ).join('');
+    }
+
+    row.innerHTML = `
+                        <td>
+                            <div class="project-name">${projectName}</div>
+                        </td>
+                     
+                        <td class="project-date">
+                            ${formattedDate}
+                        </td>
+                        <td>
+                            <div class="group-members">
+                                ${memberTags}
+                            </div>
+                        </td>
+                    `;
+
+    tbody.appendChild(row);
+    rowIndex++;
+
+  });
 }
+
 
 
 
