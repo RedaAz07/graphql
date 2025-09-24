@@ -309,7 +309,7 @@ body::before {
 }
 
 .svg1,
-.svg2 {
+.svg2 , .projects-section {
   font-size: 1.2rem;
   font-weight: 600;
   color: #e2e8f0;
@@ -452,13 +452,13 @@ body::before {
 
   .svg {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 2rem;  
   }
 
   .xp,
   .level,
   .svg1,
-  .svg2 {
+  .svg2 ,.projects-section {
     padding: 2rem;
   }
 }
@@ -613,7 +613,6 @@ body::before {
 }
 
 .projects-section {
-  grid-column: span 2;
   margin-top: 1rem;
   background: rgba(15, 23, 42, 0.6);
   backdrop-filter: blur(20px);
@@ -695,15 +694,7 @@ body::before {
   position: relative;
 }
 
-.projects-table thead th::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.8), transparent);
-}
+
 
 .projects-table tbody tr {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -717,17 +708,7 @@ body::before {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-.projects-table tbody tr::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
-  transform: scaleY(0);
-  transition: transform 0.3s ease;
-}
+
 
 .projects-table tbody tr:hover::before {
   transform: scaleY(1);
@@ -885,5 +866,9 @@ body::before {
 }.table-scroll {
   max-height: 280px;
   overflow-y: auto;
-  overflow-x: hidden; /* منع السحب الأفقي */
+  overflow-x: hidden; 
+}
+
+a{
+  text-decoration: none;
 }

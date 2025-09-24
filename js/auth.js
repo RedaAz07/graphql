@@ -107,45 +107,45 @@ function svg(data) {
   document.body.innerHTML = `
 ${header(user)}
 
+   <div class="container">
+        <div class="info">
+            <div class="xp">
+                <h3>Total XP</h3>
+                <span>${(totalXp / 1000).toFixed(1)}KB</span>
+            </div>
+            <div class="level">
+                <h3>Current Level</h3>
+                <div class="level-cr">${level}</div>
+            </div>
+        </div>
 
-<div class="container">
-  <div class="info">
-    <div class="xp">
-      <h3>Total XP</h3>
-      <span>${(totalXp / 1000).toFixed(1)}KB</span>
-    </div>
-    <div class="level">
-      <h3>Current Level</h3>
-      <div class="level-cr">${level}</div>
-    </div>
-  </div>
-  
-  <div class="svg">
-  <div class="projects-section">
-                    <h3>Recent Projects</h3>
-                    <div class="table-container">
-                        <div class="table-scroll">
-                            <table class="projects-table">
-                                <thead>
-                                    <tr>
-                                        <th>Project Name</th>
-                                        <th>Date</th>
-                                        <th>Team Members</th>
-                                    </tr>
-                                </thead>
-                                
-                                <tbody id="projects-tbody">
-                                
-                                </tbody>
-                            </table>
-                        </div>
+        <div class="svg">
+            <div class="projects-section">
+                <h3>Recent Projects</h3>
+                <div class="table-container">
+                    <div class="table-scroll">
+                        <table class="projects-table">
+                            <thead>
+                                <tr>
+                                    <th>Project Name</th>
+                                    <th>Date</th>
+                                    <th>Team Members</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="projects-tbody">
+
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-  ${svg2(skills)}
-  ${svg1(successLength, circumference, failedLength, success, failed, auditRatio)}
+            </div>
+            ${svg2(skills)}
+            ${svg1(successLength, circumference, failedLength, success, failed, auditRatio)}
 
-  </div>
-</div>
+        </div>
+    </div>
+
 `;
   const tbody = document.getElementById('projects-tbody');
   tbody.innerHTML = ''; // Clear existing rows
@@ -174,7 +174,7 @@ ${header(user)}
     let memberTags = '<span class="no-group">Solo Project</span>';
     if (group && group.members) {
       memberTags = group.members.map(member =>
-        `<span class="member-tag">${member.userLogin}</span>`
+        `<a  href="https://profile.zone01oujda.ma/profile/${member.userLogin}"  target="_blank" rel="noopener noreferrer"><span class="member-tag">${member.userLogin}</span></a>`
       ).join('');
     }
 
