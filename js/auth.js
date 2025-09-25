@@ -70,7 +70,6 @@ export async function Profile() {
     data = data.data
 
     if (!data) {
-
       logout()
       return
     }
@@ -87,10 +86,6 @@ export async function Profile() {
 
 function svg(data) {
   const projects = data.projects[0].finished_projects
-
-  console.log(projects);
-
-
   const user = data.user[0];
   const totalXp = data.totalXp.aggregate.sum.amount;
   const level = user.level[0]?.amount || 0;
@@ -103,6 +98,10 @@ function svg(data) {
   const circumference = 2 * Math.PI * radius;
   const successLength = (success / totalAudits) * circumference;
   const failedLength = (failed / totalAudits) * circumference;
+
+
+
+
 
   document.body.innerHTML = `
 ${header(user)}
@@ -167,7 +166,6 @@ ${header(user)}
       year: 'numeric'
     });
 
-    // Format amount
 
 
     // Render member tags

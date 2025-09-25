@@ -28,22 +28,30 @@ export  function  header(user) {
 
 export  function  svg2(skills){
     return `
-    <div class="svg2">
-      <h3 style=" text-align: center;">Skills</h3>
-      <div class="skills-container">
-        ${skills.map(skill => `
-          <div class="skill-item">
-            <div class="skill-name">
-              <span>${skill.skillType.split("_").slice(1).toString()}</span>
-              <span class="skill-percentage">${skill.skillAmount}%</span>
-            </div>
-            <div class="skill-bar">
-              <div class="skill-progress" style="width: ${Math.min(skill.skillAmount, 100)}%"></div>
-            </div>
-          </div>
-        `).join('')}
+  <div class="svg2">
+  <h3 style="text-align: center;">Skills</h3>
+  <div class="skills-container">
+    ${skills.map(skill => `
+      <div class="skill-item">
+        <div class="skill-name">
+          <span>${skill.skillType.split("_").slice(1).toString()}</span>
+          <span class="skill-percentage">${skill.skillAmount}%</span>
+        </div>
+        <div class="">
+          <svg width="100%" height="10">
+            <rect x="0" y="0" width="100%" height="10" fill="#e0e0e0" rx="5" ry="5"></rect>
+            <rect x="0" y="0" 
+                  width="${Math.min(skill.skillAmount, 100)}%" 
+                  height="10" 
+                  fill="#c084fc" 
+                  rx="5" ry="5"></rect>
+          </svg>
+        </div>
       </div>
-    </div>`
+    `).join('')}
+  </div>
+</div>
+`
 }
 export function svg1(successLength, circumference,failedLength , success, failed , auditRatio) {
     return `
@@ -51,11 +59,11 @@ export function svg1(successLength, circumference,failedLength , success, failed
       <h3>Audit Ratio</h3>
       <svg width="250" height="250" viewBox="0 0 200 200">
         <defs>
-          <linearGradient id="greenGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          <linearGradient id="greenGradient">
             <stop offset="0%" style="stop-color:#22c55e; stop-opacity:1" />
             <stop offset="100%" style="stop-color:#4ade80; stop-opacity:1" />
           </linearGradient>
-          <linearGradient id="redGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          <linearGradient id="redGradient">
             <stop offset="0%" style="stop-color:#ef4444; stop-opacity:1" />
             <stop offset="100%" style="stop-color:#f87171; stop-opacity:1" />
           </linearGradient>

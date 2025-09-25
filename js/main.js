@@ -1,8 +1,8 @@
 import { login, Profile } from "./auth.js";
 
 document.addEventListener('DOMContentLoaded', async () => {
-  let k = localStorage.getItem("token")
-  if (k) {
+  let token = localStorage.getItem("token")
+  if (token) {
     Profile()
   } else {
     login()
