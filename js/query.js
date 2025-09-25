@@ -55,7 +55,7 @@ export const quer = `
                 {eventId: {_eq: 41}}
             }
         } order_by: {  updatedAt: desc}) {
-            group { path members { userLogin }             updatedAt
+            group { path members(where : {accepted : {_eq : true }}) { userLogin } updatedAt
 }
         }
     }
