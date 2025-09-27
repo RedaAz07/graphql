@@ -213,9 +213,9 @@ ${header(user)}
 }
 
 function formatBytes(bytes) {
-    if (bytes < 1000) return bytes + " B"; 
+    if (Math.abs(bytes)  < 1000) return bytes + " B"; 
     let kb =( bytes / 1000);
-    if (kb < 1000) return kb.toFixed(1) + " KB"; 
+    if (Math.abs(kb) < 1000) return kb.toFixed(1) + " KB"; 
     let mb = kb / 1000;
     return mb.toFixed(1) + " MB"; 
 }
