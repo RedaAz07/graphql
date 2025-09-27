@@ -11,8 +11,6 @@ export const quer = `
       order_by: {amount: desc}
       limit: 1
     ) {
-      path
-      createdAt
       amount
     }
   }
@@ -33,7 +31,7 @@ export const quer = `
     ) {
       skillType: type
       skillAmount: amount
-    }
+    } 
   }
   audit  : user {
     auditRatio

@@ -85,15 +85,16 @@ export async function Profile() {
 
 
 function svg(data) {
-  const projects = data.projects[0].finished_projects
-  const user = data.user[0];
-  const totalXp = data.totalXp.aggregate.sum.amount;
-  const level = user.level[0]?.amount || 0;
-  const success = data.audit[0].sucess.aggregate.count;
-  const failed = data.audit[0].failed.aggregate.count;
+  const projects = data.projects?.[0]?.finished_projects || [];
+
+  const user = data.user?.[0] || {};
+  const totalXp = data.totalXp?.aggregate?.sum?.amount || 0;
+  const level = user.level?.[0]?.amount || 0;
+  const success = data.audit?.[0]?.sucess?.aggregate?.count || 0;
+  const failed = data.audit?.[0]?.failed?.aggregate?.count || 0;
   const totalAudits = success + failed;
-  const auditRatio = data.audit[0].auditRatio;
-  const skills = data.skills[0].transactions;
+  const auditRatio = data.audit?.[0]?.auditRatio || 0;
+  const skills = data.skills?.[0]?.transactions || [];
   const radius = 80;
   const circumference = 2 * Math.PI * radius;
   const successLength = (success / totalAudits) * circumference;
@@ -147,10 +148,14 @@ ${header(user)}
 
 `;
   const tbody = document.getElementById('projects-tbody');
-  tbody.innerHTML = ''; // Clear existing rows
+  tbody.innerHTML = '';
 
   let rowIndex = 0;
 
+
+  if (!projects) {
+    return
+  }
   projects.forEach(transaction => {
     const row = document.createElement('tr');
     row.style.setProperty('--row-index', rowIndex);
@@ -168,8 +173,7 @@ ${header(user)}
 
 
 
-    // Render member tags
-    let memberTags = '<span class="no-group">Solo Project</span>';
+    let memberTags = '';
     if (group && group.members) {
       memberTags = group.members.map(member =>
         `<a  href="https://profile.zone01oujda.ma/profile/${member.userLogin}"  target="_blank" rel="noopener noreferrer"><span class="member-tag">${member.userLogin}</span></a>`

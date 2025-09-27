@@ -1,4 +1,4 @@
-export const loginUI =  `
+export const loginUI = `
 
   <div id="content">
     <div class="login">
@@ -13,8 +13,9 @@ export const loginUI =  `
     </div>
     `
 
-export  function  header(user) {
-    return `
+export function header(user) {
+ 
+  return `
     <header id="header">
   <div id="welcom">
     <h1>Welcome ${user.firstName} ${user.lastName}</h1>
@@ -22,12 +23,16 @@ export  function  header(user) {
   <div id="btn"><button id="logout">logOut</button></div>
 </header>
 `
-    
-    
+
+
 }
 
-export  function  svg2(skills){
-    return `
+export function svg2(skills) {
+
+  if (!skills) {
+    return
+  }
+  return `
   <div class="svg2">
   <h3 style="text-align: center;">Skills</h3>
   <div class="skills-container">
@@ -53,44 +58,37 @@ export  function  svg2(skills){
 </div>
 `
 }
-export function svg1(successLength, circumference,failedLength , success, failed , auditRatio) {
-    return `
+export function svg1(successLength, circumference, failedLength, success, failed, auditRatio) {
+ 
+  return `
       <div class="svg1">
       <h3>Audit Ratio</h3>
-      <svg width="250" height="250" viewBox="0 0 200 200">
-        <defs>
-          <linearGradient id="greenGradient">
-            <stop offset="0%" style="stop-color:#22c55e; stop-opacity:1" />
-            <stop offset="100%" style="stop-color:#4ade80; stop-opacity:1" />
-          </linearGradient>
-          <linearGradient id="redGradient">
-            <stop offset="0%" style="stop-color:#ef4444; stop-opacity:1" />
-            <stop offset="100%" style="stop-color:#f87171; stop-opacity:1" />
-          </linearGradient>
-        </defs>
+      <svg width="250" height="250">
+       
         <circle r="80" cx="100" cy="100" fill="transparent" stroke="rgba(102, 126, 234, 0.1)" stroke-width="15"/>
-        <circle
-          r="80"
-          cx="100"
-          cy="100"
-          fill="transparent"
-          stroke="url(#greenGradient)"
-          stroke-width="15"
-          stroke-dasharray="${successLength} ${circumference}"
-          stroke-dashoffset="0"
-          transform="rotate(-90 100 100)"
-        />
-        <circle
-          r="80"
-          cx="100"
-          cy="100"
-          fill="transparent"
-          stroke="url(#redGradient)"
-          stroke-width="15"
-          stroke-dasharray="${failedLength} ${circumference}"
-          stroke-dashoffset="-${successLength}"
-          transform="rotate(-90 100 100)"
-        />
+       <circle
+  r="80"
+  cx="100"
+  cy="100"
+  fill="transparent"
+  stroke="#22c55e"
+  stroke-width="15"
+  stroke-dasharray="${successLength} ${circumference}"
+  stroke-dashoffset="0"
+  transform="rotate(-90 100 100)"
+/>
+
+<circle
+  r="80"
+  cx="100"
+  cy="100"
+  fill="transparent"
+  stroke="#ef4444"
+  stroke-width="15"
+  stroke-dasharray="${failedLength} ${circumference}"
+  stroke-dashoffset="-${successLength}"
+  transform="rotate(-90 100 100)"
+/>
         <text x="100" y="90" text-anchor="middle" font-size="12" fill="#22c55e" font-weight="bold">
           ${success}
         </text>
