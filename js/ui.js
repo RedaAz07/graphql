@@ -1,4 +1,4 @@
-export const loginUI = `
+  export const loginUI = `
 
   <div id="content">
     <div class="login">

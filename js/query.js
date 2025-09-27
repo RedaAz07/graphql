@@ -46,15 +46,24 @@ export const quer = `
       }
     }
   }
-    projects : user {
+    projects : transaction(
+       where: {type: {_eq: "xp"}, eventId: {_eq: 41},path:{_nilike:"%checkpoint%"}}
+    order_by: {createdAt: desc}
+  ) {
+    
 
-        finished_projects: groups(where: {
-            group: {status: {_eq: finished}, _and: 
-                {eventId: {_eq: 41}}
-            }
-        } order_by: {  updatedAt: desc}) {
-            group { path members(where : {accepted : {_eq : true }}) { userLogin } updatedAt
-}
+    amount
+    createdAt
+    object {
+     progresses{
+      group{
+        members(where:{accepted:{_eq: true }}){
+          userLogin
         }
+      }
     }
+      name
+      type
+    }
+  }
 }`

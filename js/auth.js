@@ -85,7 +85,8 @@ export async function Profile() {
 
 
 function svg(data) {
-  const projects = data.projects?.[0]?.finished_projects || [];
+  const projects = data.projects;
+console.log(projects);
 
   const user = data.user?.[0] || {};
   const totalXp = data.totalXp?.aggregate?.sum?.amount || 0;
@@ -130,6 +131,7 @@ ${header(user)}
                                     <th>Project Name</th>
                                     <th>Date</th>
                                     <th>Team Members</th>
+                                    <th>XP</th>
                                 </tr>
                             </thead>
 
@@ -160,9 +162,15 @@ ${header(user)}
     const row = document.createElement('tr');
     row.style.setProperty('--row-index', rowIndex);
 
-    const group = transaction.group;
-    const projectName = transaction.group.path.replace("/oujda/module/", "")
-    const date = new Date(transaction.group.updatedAt);
+    const group =   transaction.object.progresses[0].group
+
+
+    
+
+    const projectName =    transaction.object.name
+  const  amount =   transaction.amount 
+    
+    const date = new Date( transaction.createdAt);
 
     // Format date
     const formattedDate = date.toLocaleDateString('en-US', {
@@ -184,15 +192,18 @@ ${header(user)}
                         <td>
                             <div class="project-name">${projectName}</div>
                         </td>
-                     
+                        
                         <td class="project-date">
-                            ${formattedDate}
+                        ${formattedDate}
                         </td>
                         <td>
-                            <div class="group-members">
-                                ${memberTags}
-                            </div>
+                        <div class="group-members">
+                        ${memberTags}
+                        </div>
                         </td>
+                        <td>
+                          <div class="project-amount" style="color:  ${amount>0 ? "green" : "red" } ">${(amount/1000 ).toFixed(2)} KB</div>
+                      </td>
                     `;
 
     tbody.appendChild(row);
