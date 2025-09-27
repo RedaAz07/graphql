@@ -112,7 +112,7 @@ ${header(user)}
         <div class="info">
             <div class="xp">
                 <h3>Total XP</h3>
-                <span>${(totalXp / 1000).toFixed(1)}KB</span>
+                <span>${formatBytes(totalXp)}</span>
             </div>
             <div class="level">
                 <h3>Current Level</h3>
@@ -202,7 +202,7 @@ ${header(user)}
                         </div>
                         </td>
                         <td>
-                          <div class="project-amount" style="color:  ${amount>0 ? "green" : "red" } ">${(amount/1000 ).toFixed(2)} KB</div>
+                          <div class="project-amount" style="color:  ${amount>0 ? "green" : "red" } ">${formatBytes(amount)} </div>
                       </td>
                     `;
 
@@ -212,8 +212,13 @@ ${header(user)}
   });
 }
 
-
-
+function formatBytes(bytes) {
+    if (bytes < 1000) return bytes + " B"; 
+    let kb =( bytes / 1000);
+    if (kb < 1000) return kb.toFixed(1) + " KB"; 
+    let mb = kb / 1000;
+    return mb.toFixed(1) + " MB"; 
+}
 
 function logout() {
   localStorage.removeItem('token');
